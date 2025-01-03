@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Light Mode */
+        body.light {
+            background-color: #f4f4f4;
+            color: #121212;
+        }
+
+        /* Semi-Dark Mode */
+        body.semi-dark {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        /* Dark Mode */
+        body.dark {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        header {
+            background-color: #1e1e1e;
+            padding: 15px 30px;
+            text-align: center;
+            color: #ffffff;
+            border-bottom: 2px solid #333;
+        }
+
+        nav h1 {
+            margin: 0;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+        }
+
+        #flip {
+            background-color: #6200ea;
+            border: none;
+            padding: 8px 20px;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        #flip:hover {
+            background-color: #3700b3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #2a2a2a;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container input {
+            padding: 12px;
+            width: 70%;
+            border-radius: 4px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #e0e0e0;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .container input:focus {
+            border: 1px solid #6200ea;
+            outline: none;
+        }
+
+        .container button {
+            padding: 12px 25px;
+            background-color: #6200ea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .container button:hover {
+            background-color: #3700b3;
+        }
+
+        iframe {
+            display: block;
+            margin: 30px 0;
+            width: 100%;
+            max-width: 100%;
+            height: 750px;
+            border: none;
+            border-radius: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 2px solid #333;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            color: #6200ea;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+
+        .mode-selector, .help-section {
+            margin-top: 30px;
+        }
+
+        .mode-selector label, .help-section label {
+            font-size: 1rem;
+            color: #6200ea;
+        }
+
+        .mode-selector select {
+            padding: 8px;
+            font-size: 1rem;
+            background-color: #333;
+            color: #6200ea;
+            border: 1px solid #6200ea;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .mode-selector select:focus {
+            border: 1px solid #03dac5;
+        }
+
+        .help-section {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .help-section p {
+            color: #bbb;
+            font-size: 1.1rem;
+        }
+
+        .help-section ol {
+            color: #e0e0e0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body class="dark">
+    <header>
+        <nav>
+            <h1 id="Title">Movie Gallery</h1>
+            <button id="flip">Switch to Light Mode</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Enter Movie Code</h2>
+        <p class="description">To view a movie, simply enter the IMDb code of the movie you want to watch and click "Load Movie".</p>
+        <label for="movie_name">Enter Movie Code:</label>
+        <input id="movie_name" type="text" placeholder="Example: tt13186482">
+        <button id="update_btn">Load Movie</button>
+
+        <iframe id="movie_iframe" src="https://vidsrc.xyz/embed/movie?imdb=tt13186482" allowfullscreen></iframe>
+
+        <h2>Product API Reference</h2>
+        <p class="description">Check out the product API for more information on the products displayed here.</p>
+
+        <!-- Dark Mode Selector -->
+        <div class="mode-selector">
+            <label for="theme-selector">Select Theme: </label>
+            <select id="theme-selector">
+                <option value="light">Light</option>
+                <option value="semi-dark">Semi-Dark</option>
+                <option value="dark">Dark</option>
+            </select>
+        </div>
+
+        <!-- Help Section -->
+        <div class="help-section">
+            <h2>How to Use:</h2>
+            <p>Follow these steps to get started:</p>
+            <ol>
+                <li>Enter the IMDb code of the movie you want to watch in the input field.</li>
+                <li>Click on the "Load Movie" button to load the movie.</li>
+                <li>Switch between dark and light themes for your comfort using the theme selector.</li>
+            </ol>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made By <strong>Your Name</strong> — Creating experiences that matter.</p>
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        const flipButton = document.getElementById('flip');
+        const body = document.body;
+        const themeSelector = document.getElementById('theme-selector');
+
+        flipButton.addEventListener('click', () => {
+            if (body.classList.contains('dark')) {
+                body.classList.remove('dark');
+                body.classList.add('light');
+                flipButton.textContent = 'Switch to Dark Mode';
+            } else {
+                body.classList.add('dark');
+                body.classList.remove('light');
+                flipButton.textContent = 'Switch to Light Mode';
+            }
+        });
+
+        // Update iframe with Movie Code
+        const movieInput = document.getElementById('movie_name');
+        const updateButton = document.getElementById('update_btn');
+        const iframe = document.getElementById('movie_iframe');
+
+        updateButton.addEventListener('click', () => {
+            const movieCode = movieInput.value.trim();
+            if (movieCode) {
+                iframe.src = `https://vidsrc.xyz/embed/movie?imdb=${movieCode}`;
+            } else {
+                alert('Please enter a valid movie code.');
+            }
+        });
+
+        // Theme selection via dropdown
+        themeSelector.addEventListener('change', (event) => {
+            const selectedTheme = event.target.value;
+            if (selectedTheme === 'dark') {
+                body.classList.add('dark');
+                body.classList.remove('semi-dark', 'light');
+            } else if (selectedTheme === 'semi-dark') {
+                body.classList.add('semi-dark');
+                body.classList.remove('dark', 'light');
+            } else {
+                body.classList.remove('dark', 'semi-dark');
+                body.classList.add('light');
+            }
+        });
+    </script>
+</body>
+</html>
